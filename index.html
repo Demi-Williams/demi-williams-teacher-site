@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Demi Williams – Teacher</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@500;700;800&family=Public+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  box-sizing:border-box;
+  padding-top:env(safe-area-inset-top,0px);
+  padding-bottom:env(safe-area-inset-bottom,0px);
+  --bg:#F2F5F3; --surface:#FFFFFF; --ink:#1B2421; --muted:#55645E; --line:#D5DDD9;
+  --board:#1F4D3F; --board-ink:#F4F7F5; --chalk:#F2C94C; --accent:#1F4D3F;
+  --head:"Bricolage Grotesque","Trebuchet MS",system-ui,sans-serif;
+  --body:"Public Sans",system-ui,-apple-system,"Segoe UI",sans-serif;
+  color-scheme:light;
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --bg:#121815; --surface:#1A2420; --ink:#ECF1EE; --muted:#9FB0A8; --line:#2B3A34;
+    --board:#193D32; --accent:#F2C94C; color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#121815; --surface:#1A2420; --ink:#ECF1EE; --muted:#9FB0A8; --line:#2B3A34;
+  --board:#193D32; --accent:#F2C94C; color-scheme:dark;
+}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*,*::before,*::after{box-sizing:inherit}
+body{margin:0;background:var(--bg);color:var(--ink);font:400 1.0625rem/1.6 var(--body)}
+a{color:inherit}
+:focus-visible{outline:3px solid var(--chalk);outline-offset:3px}
+
+.board{background:var(--board);color:var(--board-ink);padding:4rem 1.5rem 3.5rem}
+.wrap{max-width:46rem;margin:0 auto}
+.board h1{font:800 clamp(3rem,13vw,6rem)/.95 var(--head);letter-spacing:-.03em;margin:0 0 1rem}
+.board .role{font:500 1.25rem/1.4 var(--head);margin:0 0 2rem;color:var(--chalk)}
+.board p.lead{max-width:34rem;margin:0 0 2rem;color:#D4E0DA}
+.actions{display:flex;flex-wrap:wrap;gap:.75rem}
+.btn{display:inline-block;padding:.75rem 1.25rem;border-radius:.5rem;font-weight:600;text-decoration:none;border:2px solid var(--chalk)}
+.btn.solid{background:var(--chalk);color:#1B2421}
+.btn.ghost{color:var(--board-ink)}
+.btn:hover{background:var(--board-ink);color:#1B2421;border-color:var(--board-ink)}
+
+main{padding:1rem 1.5rem 3rem}
+section{max-width:46rem;margin:0 auto;padding:2.5rem 0;border-bottom:1px solid var(--line)}
+section:last-of-type{border-bottom:0}
+h2{font:700 1.75rem/1.2 var(--head);margin:0 0 1.5rem;letter-spacing:-.01em}
+h3{font:700 1.2rem/1.3 var(--head);margin:0}
+.entry{display:grid;gap:.25rem;margin-bottom:1.5rem}
+.when{color:var(--muted);font-weight:500;font-size:.95rem}
+.entry p{margin:.25rem 0 0;color:var(--muted)}
+
+.chips{list-style:none;margin:.75rem 0 0;padding:0;display:flex;flex-wrap:wrap;gap:.5rem}
+.chips li{background:var(--surface);border:1px solid var(--line);border-radius:999px;padding:.35rem .9rem;font-size:.95rem}
+
+.skills{list-style:none;margin:0;padding:0;display:grid;gap:.75rem}
+@media (min-width:36rem){.skills{grid-template-columns:1fr 1fr}}
+.skills li{background:var(--surface);border:1px solid var(--line);border-left:5px solid var(--chalk);padding:.9rem 1rem;border-radius:.25rem .5rem .5rem .25rem;font-weight:500}
+
+.contact a{display:block;font:700 clamp(1.25rem,5vw,1.75rem)/1.4 var(--head);text-decoration:none;word-break:break-word}
+.contact a:hover{text-decoration:underline;text-decoration-color:var(--chalk);text-decoration-thickness:3px}
+.tabs{display:flex;flex-wrap:wrap;gap:.5rem;margin:0 0 1rem}
+.tabs [role="tab"]{font:600 1rem var(--body);color:var(--ink);background:var(--surface);border:1px solid var(--line);border-radius:.5rem;padding:.6rem 1rem;cursor:pointer}
+.tabs [role="tab"][aria-selected="true"]{background:var(--board);color:var(--board-ink);border-color:var(--board)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .tabs [role="tab"][aria-selected="true"]{background:var(--chalk);color:#1B2421;border-color:var(--chalk)}}
+:root[data-theme="dark"] .tabs [role="tab"][aria-selected="true"]{background:var(--chalk);color:#1B2421;border-color:var(--chalk)}
+.panel{background:var(--surface);border:1px solid var(--line);border-radius:.5rem;padding:1.25rem}
+.panel[hidden]{display:none}
+.panel h3{margin-bottom:.75rem}
+.panel h4{font:700 1rem var(--head);margin:1.25rem 0 .5rem}
+.facts{display:grid;gap:.5rem;margin:0}
+.facts div{display:grid;gap:.1rem}
+.facts dt{color:var(--muted);font-size:.9rem}
+.facts dd{margin:0;font-weight:500}
+.scroll{overflow-x:auto}
+table{border-collapse:collapse;width:100%;min-width:18rem}
+th,td{text-align:left;padding:.45rem .5rem;border-bottom:1px solid var(--line);font-size:.95rem}
+th{color:var(--muted);font-weight:500}
+.plain{margin:0;padding-left:1.1rem}
+.plain li{margin:.2rem 0}
+.pdf{display:inline-block;margin-top:1rem;padding:.65rem 1.1rem;border-radius:.5rem;font-weight:600;text-decoration:none;background:var(--chalk);color:#1B2421}
+.pdf:hover{text-decoration:underline}
+footer{text-align:center;color:var(--muted);font-size:.9rem;padding:0 1.5rem 2rem}
+/* soft pastel background */
+:root{--wash:rgba(251,246,243,.72)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--wash:rgba(18,24,21,.88)}}
+:root[data-theme="dark"]{--wash:rgba(18,24,21,.88)}
+body{background:linear-gradient(var(--wash),var(--wash)),url(/_blob/9ed1bdc56cf469eec5195f120ee092c0) center/cover fixed no-repeat,var(--bg)}
+section{border-bottom-color:transparent}
+</style>
+</head>
+<body>
+<header class="board">
+  <div class="wrap">
+    <h1>Demi Williams</h1>
+    <p class="role">Teacher · Afrikaans and Computer Applications Technology</p>
+    <p class="lead">Final-year Bachelor of Education student at North-West University, specialising in Afrikaans and Computer Applications Technology, with 32 weeks of practical teaching experience.</p>
+    <div class="actions">
+      <a class="btn solid" href="mailto:wdemi22@gmail.com">Email me</a>
+      <a class="btn ghost" href="tel:+27769074887">Call 076 907 4887</a>
+    </div>
+  </div>
+</header>
+
+<main>
+  <section id="education">
+    <h2>Education</h2>
+    <div class="entry">
+      <h3>Bachelor of Education: Senior Phase and FET, with Afrikaans for Education</h3>
+      <span class="when">North-West University · 2023 – 2026</span>
+      <p>Majors: Afrikaans and Computer Applications Technology.</p>
+    </div>
+    <div class="entry">
+      <h3>Willowmead Secondary School</h3>
+      <span class="when">2016 – 2020</span>
+      <ul class="chips" aria-label="Subjects">
+        <li>English</li>
+        <li>Afrikaans</li>
+        <li>Mathematical Literacy</li>
+        <li>Business Studies</li>
+        <li>Consumer Studies</li>
+        <li>Tourism</li>
+        <li>Life Orientation</li>
+      </ul>
+    </div>
+  </section>
+
+  <section id="experience">
+    <h2>Experience</h2>
+    <div class="entry">
+      <h3>School practicals</h3>
+      <span class="when">32 weeks</span>
+      <p>Practical teaching in Afrikaans and Computer Applications Technology.</p>
+      <div class="scroll">
+        <table>
+          <thead><tr><th>Year</th><th>School</th><th>Weeks</th></tr></thead>
+          <tbody>
+            <tr><td>2023</td><td>Willowmead Secondary School</td><td>8</td></tr>
+            <tr><td>2024</td><td>Willowmead Secondary School</td><td>8</td></tr>
+            <tr><td>2025</td><td>Willowmead Secondary School</td><td>8</td></tr>
+            <tr><td>2026, first semester</td><td>Southview High School</td><td>4</td></tr>
+            <tr><td>2026, second semester</td><td>Willowmead Secondary School</td><td>4</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <section id="skills">
+    <h2>Skills</h2>
+    <ul class="skills">
+      <li>Classroom management</li>
+      <li>Lesson planning and preparation</li>
+      <li>Learner engagement and support</li>
+      <li>Microsoft Office: Word, Excel, PowerPoint and Access</li>
+      <li>Basic HTML and CSS</li>
+      <li>Digital literacy and educational technology</li>
+    </ul>
+  </section>
+
+  <section id="documents">
+    <h2>Documents</h2>
+    <div class="tabs" role="tablist" aria-label="Documents">
+      <button role="tab" id="tab-record" aria-controls="panel-record" aria-selected="true">Academic record</button>
+      <button role="tab" id="tab-cert" aria-controls="panel-cert" aria-selected="false" tabindex="-1">Certificate</button>
+    </div>
+
+    <div class="panel" id="panel-record" role="tabpanel" aria-labelledby="tab-record">
+      <h3>Academic record</h3>
+      <a class="pdf" href="/_blob/5974962e5d4a703e67199041fa0c863e" target="_blank" rel="noopener">Open the full record (PDF)</a>
+    </div>
+
+    <div class="panel" id="panel-cert" role="tabpanel" aria-labelledby="tab-cert" hidden>
+      <h3>NWU AI for Academic and Career Success</h3>
+      <a class="pdf" href="/_blob/bd9106fbd7631ada4366c0a3fb0c1011" target="_blank" rel="noopener">Open the certificate (PDF)</a>
+    </div>
+  </section>
+
+  <section id="contact" class="contact">
+    <h2>Get in touch</h2>
+    <a href="mailto:wdemi22@gmail.com">wdemi22@gmail.com</a>
+    <a href="tel:+27769074887">076 907 4887</a>
+  </section>
+</main>
+
+<footer>© Demi Williams</footer>
+<script>
+(function(){
+  var tabs=[].slice.call(document.querySelectorAll('[role="tab"]'));
+  function show(t){
+    tabs.forEach(function(x){
+      var on=x===t;
+      x.setAttribute('aria-selected',on);
+      x.tabIndex=on?0:-1;
+      document.getElementById(x.getAttribute('aria-controls')).hidden=!on;
+    });
+  }
+  tabs.forEach(function(t,i){
+    t.addEventListener('click',function(){show(t)});
+    t.addEventListener('keydown',function(e){
+      var n=null;
+      if(e.key==='ArrowRight')n=tabs[(i+1)%tabs.length];
+      if(e.key==='ArrowLeft')n=tabs[(i-1+tabs.length)%tabs.length];
+      if(n){e.preventDefault();show(n);n.focus();}
+    });
+  });
+})();
+</script>
+</body>
+</html>
